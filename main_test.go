@@ -77,6 +77,9 @@ func TestLocalContainer(t *testing.T) {
 		QueueUrl:            aws.String(os.Getenv(ENDPOINT_ENV)),
 		MaxNumberOfMessages: *aws.Int32(2),
 	})
+	if err != nil {
+		t.Error("failed to receive message")
+	}
 	for _, msg := range msg.Messages {
 		fmt.Println(*msg.Body)
 	}
